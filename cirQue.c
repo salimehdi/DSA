@@ -47,18 +47,13 @@ void enqueue(){
 
     if ( front - rear == MAX-1 || rear - front == MAX-1 ) {
         printf("Queue Is Full !\n");
-    }else if (front == -1 && rear == -1) {
+    } else {
         int en = takeAValue();
-        front = (front+1)%MAX;
-        rear = (rear+1)%MAX;
-        queue[rear] = en ;
-    } else  {
-        // if ( rear - front == -1 || ( rear == 4 && front == 0 ) )
-        int en = takeAValue();
+        if (front == -1 && rear == -1)
+            front = (front+1)%MAX;
         rear = (rear+1)%MAX;
         queue[rear] = en ;
     } 
-
 }
 void dequeue(){
 
@@ -78,19 +73,13 @@ void display(){
 
     if (front == -1 && rear == -1){
         printf("Empty Queue Hai ?\n");
-    } else if ( front <= rear ) { 
-        for (int i = front; i <= rear ; i++)
-        {
-            printf("%d ", queue[i]);
-        }
-        printf("\n");
     } else { 
         int i = front ;
 
-        while (1) { 
+        while (1) { // infinite looop !
             printf("%d[%d] ", queue[i],i);
             if (i == rear) { 
-                break;
+                break; // controller
             }
             if ( i == MAX-1 ){
                 i = 0 ;
